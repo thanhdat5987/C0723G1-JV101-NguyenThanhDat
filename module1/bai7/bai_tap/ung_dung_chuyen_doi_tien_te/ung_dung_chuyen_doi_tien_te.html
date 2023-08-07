@@ -38,14 +38,14 @@
 <script>
     function changeMoney() {
         let amount = document.getElementById("inputMoney").value
-        let f = document.getElementById("select1").value
-        let t = document.getElementById("select2").value
+        let fromC = document.getElementById("select1").value
+        let toC = document.getElementById("select2").value
         let result
-        if (f == "VND" && t == "USD") {
+        if (fromC == "VND" && toC == "USD") {
             result = "Result is " + (amount / 23000) + " $"
-        } else if (f == "USD" && t == "VND") {
+        } else if (fromC == "USD" && toC == "VND") {
             result = "Result is " + (amount * 23000) + " VND"
-        } else if (f == "USD" && t == "USD") {
+        } else if (fromC == "USD" && toC == "USD") {
             result = "Result is " + amount + " USD"
         } else {
             result = "Result is " + amount + " VND"
