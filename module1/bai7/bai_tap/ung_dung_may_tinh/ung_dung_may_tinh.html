@@ -39,9 +39,13 @@
     function division(){
         let number1 = +document.getElementById("num1").value
         let number2 = +document.getElementById("num2").value
-        let result
-        result = number1/number2
-        document.getElementById("showResult").innerText = "The result is: " + result
+        if(number2===0){
+            alert("Mau so phai khac khong!")
+        } else{
+            let result
+            result = number1/number2
+            document.getElementById("showResult").innerText = "The result is: " + result
+        }
     }
 </script>
 </html>
