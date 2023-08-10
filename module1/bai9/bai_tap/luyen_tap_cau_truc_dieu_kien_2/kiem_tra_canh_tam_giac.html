@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra canh tam giac</title>
+</head>
+<body>
+<script>
+    alert("Chuong trinh kiem tra a,b,c co phai la 3 canh cua tam giac")
+    let a = +prompt("Nhap vao a")
+    let b = +prompt("Nhap vao b")
+    let c = +prompt("Nhap vao c")
+    if(a>0 && b>0 && c>0) {
+        if (a + b > c) {
+            if (b + c > a) {
+                if (a + c > b) {
+                    alert(a + ", " + b + ", " + c + " la 3 canh cua mot tam giac")
+                } else {
+                    alert(a + ", " + b + ", " + c + " khong phai la 3 canh cua mot tam giac")
+                }
+            } else {
+                alert(a + ", " + b + ", " + c + " khong phai la 3 canh cua mot tam giac")
+            }
+        } else {
+            alert(a + ", " + b + ", " + c + " khong phai la 3 canh cua mot tam giac")
+        }
+    } else{
+        alert(a +", " + b + ", " + c + " khong phai la 3 canh cua mot tam giac")
+    }
+</script>
+</body>
+</html>
