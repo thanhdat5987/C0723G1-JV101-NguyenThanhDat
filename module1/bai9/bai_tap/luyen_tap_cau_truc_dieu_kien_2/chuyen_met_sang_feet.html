@@ -29,8 +29,12 @@
 <script>
     function convert(){
         let met = document.getElementById("met").value;
-        let feet = met * 3.2808;
-        document.getElementById("display").innerText = feet;
+        if(met>=0){
+            let feet = met * 3.2808;
+            document.getElementById("display").innerText = feet;
+        } else{
+            alert("so lieu phai >= 0")
+        }
     }
 </script>
 </body>
