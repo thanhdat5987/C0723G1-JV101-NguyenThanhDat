@@ -39,12 +39,12 @@
     // Nối mảng C = mảng A + mảng B
     let myArrayC = new Array(myArrayA.length + myArrayB.length);
     for (let a = 0; a < myArrayA.length; a++) {
-    myArrayC[a]=myArrayA[a]
+        myArrayC[a] = myArrayA[a]
     }
-    for (let b= myArrayA.length; b<myArrayC.length; b++){
-        myArrayC[b]=myArrayB[b-myArrayA.length]
+    for (let b = myArrayA.length; b < myArrayC.length; b++) {
+        myArrayC[b] = myArrayB[b - myArrayA.length]
     }
-    alert('Mảng C sau khi được nối từ A và B là: '+ myArrayC)
+    alert('Mảng C sau khi được nối từ A và B là: ' + myArrayC)
     console.log(myArrayC)
 </script>
 </body>
