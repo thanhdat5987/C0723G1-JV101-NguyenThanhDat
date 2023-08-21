@@ -33,7 +33,7 @@
                     console.log("Your phone is on")
                 } else {
                     this.status = true;
-                    console.log("Welcome")
+                    console.log(this.brandName + " Welcome")
                     this.batteryStatus--;
                 }
             } else {
@@ -46,7 +46,7 @@
                     console.log("Your phone is off")
                 } else {
                     this.status = false;
-                    console.log("Goodbye!")
+                    console.log(this.brandName+ " Goodbye!")
                     this.batteryStatus--;
                 }
             } else {
@@ -56,7 +56,7 @@
         batteryCharge(newBatteryStatus) {
             if (newBatteryStatus >= 0 && newBatteryStatus <= 100) {
                 this.batteryStatus = newBatteryStatus
-                console.log(this.brandName + ' battery is ' + this.batteryStatus + " %")
+                console.log(this.brandName + ' battery capacity is ' + this.batteryStatus + " %")
             }
         }
         messageDraft(message) {
@@ -121,8 +121,8 @@
             }
         }
     }
-    let iphone = new Mobile("iphone", 50, [], [], [], false)
-    let nokia = new Mobile("nokia", 50, [], [], [], false)
+    let iphone = new Mobile("Iphone15", 50, [], [], [], false)
+    let nokia = new Mobile("Nokia", 50, [], [], [], false)
     iphone.turnOn();
     nokia.turnOn();
     iphone.sendMessage("Hello", nokia);
