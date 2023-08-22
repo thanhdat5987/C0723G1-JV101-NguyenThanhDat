@@ -1,7 +1,6 @@
 /**
  * Edited by datnt on 8/21/2023.
  */
-
 function Hero(image, top, left, size, speed, direction) {
     this.image = image;
     this.top = top;
