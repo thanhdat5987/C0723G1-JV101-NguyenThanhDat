@@ -12,9 +12,7 @@
         constructor(status) {
             this.status = status;
         }
-        getStatus() {
-            return this.status;
-        }
+
         turnOff() {
             if (!this.status) {
                 console.log("Lamp has already Off")
@@ -23,6 +21,7 @@
                 console.log(" Lamp is Off now")
             }
         }
+
         turnOn() {
             if (this.status) {
                 console.log("Lamp has already On")
@@ -30,31 +29,53 @@
                 this.status = true
                 console.log("Lamp is On now")
             }
-
         }
     }
+
     class SwitchButton {
         constructor(lamp, status) {
             this.status = status;
             this.lamp = lamp;
         }
-        connectToLamp(lamp) {
-            return this.lamp = lamp;
+
+        setStatus(newStatus) {
+            this.status = newStatus
         }
-        switchOff(lamp) {
-            lamp.turnOff()
-            console.log('The lamp status is ' + lamp.status)
+
+        connectToLamp(electricLamp) {
+            this.lamp = electricLamp
+            console.log("The switch has been connected to the lamp ")
         }
-        switchOn(lamp) {
-            lamp.turnOn()
-            console.log('The lamp status is ' + lamp.status)
+
+        switchOff() {
+            if (this.status === true) {
+                this.lamp.turnOff()
+                console.log('The lamp status is ' + this.lamp.status)
+                this.status = false
+            } else {
+                console.log('The lamp has already off')
+            }
+        }
+
+        switchOn() {
+            if (this.status === false) {
+                this.lamp.turnOn()
+                console.log('The lamp status is ' + this.lamp.status)
+                this.status = true
+            } else {
+                console.log('The lamp has been turn on')
+            }
         }
     }
+
     let electricLamp01 = new ElectricLamp(false);
-    let switchButton01 = new SwitchButton(electricLamp01, false);
+    let switchButton01 = new SwitchButton();
+    //connect electricButton01 to electricLamp01
+    switchButton01.connectToLamp(electricLamp01)
+    switchButton01.setStatus(true)
     for (let i = 0; i < 10; i++) {
-        switchButton01.switchOn(electricLamp01)
-        switchButton01.switchOff(electricLamp01)
+        switchButton01.switchOff()
+        switchButton01.switchOn()
     }
 </script>
 </body>
