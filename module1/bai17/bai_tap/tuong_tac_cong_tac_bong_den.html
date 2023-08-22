@@ -72,10 +72,10 @@
     let switchButton01 = new SwitchButton();
     //connect electricButton01 to electricLamp01
     switchButton01.connectToLamp(electricLamp01)
-    switchButton01.setStatus(true)
+    switchButton01.setStatus(false)
     for (let i = 0; i < 10; i++) {
-        switchButton01.switchOff()
         switchButton01.switchOn()
+        switchButton01.switchOff()
     }
 </script>
 </body>
