@@ -46,7 +46,7 @@
         }
     } while (true)
     alert("Mang 2 vua tao la: " + myArr2)
-    //lay ra cac phan tu o Arr2 khong co o Arr1
+    //Lấy ra các phần tử có trong Arr2 mà không có trong Arr1
     let missingArr
     missingArr = myArr2
     for (let i = 0; i < myArr1.length; i++) {
@@ -56,11 +56,12 @@
             }
         }
     }
-    //kiem tra va xoa cac phan tu trung nhau
+    //Kiểm tra và xoá các phần tử trùng nhau trong mảng missingArr vừa tạo được
     for (let k = 0; k < missingArr.length; k++) {
-        for (let l = 0; l < missingArr.length; l++) {
+        for (let l = k+1; l < missingArr.length; l++) {
             if (missingArr[k] === missingArr[l]) {
                 missingArr.splice(k, 1)
+                k--
             }
         }
     }
