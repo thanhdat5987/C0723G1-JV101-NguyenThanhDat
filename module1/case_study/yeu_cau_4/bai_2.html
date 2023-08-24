@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2</title>
+</head>
+<body>
+<script>
+  let myStr = prompt('Nhập vào chuỗi ký tự của bạn')
+  let differentSymbol=''
+  let count =0
+  for(let i=0; i<myStr.length;i++){
+      for(let j =i+1; j<myStr.length;j++){
+          if(myStr[i] !== myStr[j] && myStr[i]!==' '){
+            differentSymbol+=myStr[i]
+              count ++;
+          }
+      }
+  }
+  alert('Có '+ count + ' ký tự khác nhau trong chuỗi ' + myStr + ' là: '+ differentSymbol)
+</script>
+</body>
+</html>

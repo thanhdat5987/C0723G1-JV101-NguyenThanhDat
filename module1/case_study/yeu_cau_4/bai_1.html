@@ -14,15 +14,23 @@
 
         // function chuẩn hoá chuỗi ký tự:
         function correct(myString) {
-            let myString1 = myString.trim() // xoá khoảng trắng ở đầu và cuối
-            let myArr = myString1.split('') // chuyển chuỗi thàng mảng
-            // xoá ký tự trắng thừa.
+            let myArr = myString.split('')// chuyển chuỗi thàng mảng
+            // Xoá các khoảng trắng đầu chuỗi
+            while (myArr[0] === ' ') {
+                myArr.shift()
+            }
+            // Xoá các khoảng trắng cuối chuỗi
+            while (myArr[myArr.length - 1] === ' ') {
+                myArr.pop()
+            }
+            // xoá ký tự trắng thừa ở giữa chuỗi.
             for (let i = 1; i < myArr.length; i++) {
                 if (myArr[i] === ' ' && myArr[i + 1] === ' ') {
                     myArr.splice(i, 1)
                     i--
                 }
             }
+            console.log(myArr)
             //chuẩn hoá chữ hoa, chữ thường
             myArr[0] = myArr[0].toLocaleUpperCase()
             for (let j = 0; j < myArr.length - 1; j++) {
@@ -40,7 +48,8 @@
         function findMaxWord(myString) {
             let maxLength = 0;
             let index
-            let words = myString.split(' ');
+            let words = myString.split(' '); // chia chuỗi thành mảng với các phần tử là các từ trong chuỗi
+            // so sánh độ dài các từ
             for (let i = 0; i < words.length; i++) {
                 if (words[i].length > maxLength) {
                     maxLength = words[i].length
@@ -50,6 +59,7 @@
             return words[index]
         }
     }
+
     main()
 </script>
 </body>
