@@ -93,7 +93,6 @@
     //|| id.length !==7 || id[0] !=='H'|| id[1] !=='V' || id[2]!=='-' || isNaN(id[3])===false|| isNaN(id[4])===false|| isNaN(id[5])===false|| isNaN(id[6])===false
     function checkId(student, arr) {
         let id = prompt('Hãy nhập mã học viên')
-        console.log(+id[3] % 1)
         let check = 0;
         for (let row = 0; row < arr.length; row++) {
             if (arr[row][0] === id) {
