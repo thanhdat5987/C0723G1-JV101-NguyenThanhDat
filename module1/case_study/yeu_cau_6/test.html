@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="addStudent(myArr)">Thêm mới học viên</button>
+<button onclick="editStudent(myArr)">Sửa thông tin học viên</button>
+<button onclick="delStudent(myArr)">Xoá học viên</button>
+<br>
+<div id="display"></div>
+
+<script>
+    let student1 = ['HV-001', 'Nguyễn Văn A', 'C0723G1', 'nguyenvana@gmail.com', '01/01/2000', 1]
+    let student2 = ['HV-002', 'Nguyễn Văn B', 'C07231G1', 'nguyenvanb@gmail.com', '01/01/2001', 2]
+    let student3 = ['HV-003', 'Nguyễn Văn C', 'C0723G1', 'nguyenvanc@gmail.com', '01/01/2001', 3]
+    let myArr = [student1, student2, student3]
+    let table
+
+    function displayStudent(arr) {
+        table = `<table border="1" style="border-collapse: collapse">
+  <tr>
+    <th>Mã học viên</th>
+    <th>Tên</th>
+    <th>Lớp</th>
+    <th>Email</th>
+    <th>Ngày sinh</th>
+    <th>Module</th>
+  </tr>`
+        for (let row = 0; row < arr.length; row++) {
+            table += `<tr>`
+            for (let col = 0; col < arr[row].length; col++) {
+                table += ` <td>` + arr[row][col] + `</td>`
+            }
+            table += `</tr>`
+        }
+        table += `</table>`
+        document.getElementById('display').innerHTML = table
+    }
+
+    function addStudent(arr) {
+        let newStudent = []
+        newStudent[0] = prompt('Nhập mã học viên cần thêm')
+        newStudent[1] = prompt('Nhập tên học viên cần thêm')
+        newStudent[2] = prompt('Nhập lớp của học viên cần thêm')
+        newStudent[3] = prompt('Nhập email cần thêm')
+        newStudent[4] = prompt('Nhập ngày sinh của học viên cần thêm')
+        newStudent[5] = prompt('Nhập module của học viên cần thêm')
+        const confirmAdd = confirm('Bạn có muốn thêm học viên ' + newStudent[1] + ' ?')
+        if (confirmAdd === true) {
+            arr.push(newStudent)
+            displayStudent(arr)
+        }
+    }
+
+    function editStudent(arr) {
+        let editId = prompt('Nhap chinh xac ID ban muon xoa')
+        for (let row = 0; row < arr.length; row++) {
+            if (arr[row][0] === editId) {
+                arr[row][1] = prompt('Hãy thay đổi tên học viên')
+                arr[row][2] = prompt('Hãy thay đổi lớp')
+                arr[row][3] = prompt('Hãy thay đổi mail')
+                arr[row][4] = prompt('Hãy thay đổi ngày sinh')
+                arr[row][5] = prompt('Hãy thay đổi module')
+                displayStudent(arr)
+                return;
+            }
+        }
+        alert('Ma hoc vien khong ton tai')
+    }
+
+    function delStudent(arr) {
+        let delId = prompt('Nhap chinh xac ID ban muon xoa')
+        for (let row = 0; row < arr.length; row++) {
+            if (arr[row][0] === delId) {
+                const confirmDel = confirm('Ban cho chac muon xoa ' + arr[row][1])
+                if (confirmDel === true) {
+                    check = 1;
+                    arr.splice(row, 1)
+                    displayStudent(arr)
+                    return;
+                }
+            }
+        }
+        alert('Ma sinh vien ban nhap khong co')
+    }
+
+    displayStudent(myArr)
+</script>
+</body>
+</html>

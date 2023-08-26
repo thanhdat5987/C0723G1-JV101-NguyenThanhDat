@@ -10,9 +10,9 @@
 <button onclick="delStudent(myArr)">Xoá học viên</button>
 <div id="display"></div>
 <script>
-    let student1 = ['HV-0001', 'Trần Hoàng Văn Hiếu', 'C0723G1', 'hieu.tran@gmail.com', '01/01/2004', 1]
-    let student2 = ['HV-0002', 'Nguyễn Hữu Đăng', 'C0723G1', 'dang.nguyen@gmail.com', '02/01/2004', 1]
-    let student3 = ['HV-0003', 'Võ Quốc Giàu', 'C0723G1', 'giau.vo@gmail.com', '03/01/2004', 1];
+    let student1 = ['HV-0001', 'Trần Hoàng Văn Hiếu', 'C0723G1', 'hieu.tran@gmail.com', '01/01/2004', "1"]
+    let student2 = ['HV-0002', 'Nguyễn Hữu Đăng', 'C0723G1', 'dang.nguyen@gmail.com', '02/01/2004', "1"]
+    let student3 = ['HV-0003', 'Võ Quốc Giàu', 'C0723G1', 'giau.vo@gmail.com', '03/01/2004', "1"];
     let myArr = [student1, student2, student3]
     let table
 
@@ -71,17 +71,19 @@
     function delStudent(arr) {
         let delId = prompt('Hãy nhập vào chính xác ID của sinh viên bạn cần xoá')
         let check = 0
+        let index
         for (let row = 0; row < arr.length; row++) {
             if (arr[row][0] === delId) {
                 const confirmDel = confirm('Bạn có muốn xoá học viên ' + arr[row][1])
                 if (confirmDel === true) {
+                    index = row
                     check = 1
-                    arr.splice(row, 1)
                     break;
                 }
             }
         }
         if (check === 1) {
+            arr.splice(index, 1)
             display(arr)
         } else {
             alert('Mã học viên bạn nhập không đúng')
@@ -137,7 +139,6 @@
             return checkModule(student)
         } else {
             return student[5] = module
-
         }
     }
 
