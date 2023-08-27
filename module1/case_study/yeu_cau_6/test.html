@@ -5,88 +5,115 @@
     <title>Title</title>
 </head>
 <body>
-<button onclick="addStudent(myArr)">Thêm mới học viên</button>
-<button onclick="editStudent(myArr)">Sửa thông tin học viên</button>
-<button onclick="delStudent(myArr)">Xoá học viên</button>
+<button onclick="addStudent(arrStudent)">Thêm học viên</button>
+<button onclick="delStudent(arrStudent)">Xoá học viên</button>
+<button onclick="editStudent(arrStudent)">Sửa thông tin học viên</button>
 <br>
 <div id="display"></div>
-
 <script>
-    let student1 = ['HV-001', 'Nguyễn Văn A', 'C0723G1', 'nguyenvana@gmail.com', '01/01/2000', 1]
-    let student2 = ['HV-002', 'Nguyễn Văn B', 'C07231G1', 'nguyenvanb@gmail.com', '01/01/2001', 2]
-    let student3 = ['HV-003', 'Nguyễn Văn C', 'C0723G1', 'nguyenvanc@gmail.com', '01/01/2001', 3]
-    let myArr = [student1, student2, student3]
-    let table
+    class Student {
+        constructor(maHocVien, ten, lop, email, ngaySinh, module) {
+            this.maHocVien = maHocVien
+            this.ten = ten
+            this.lop = lop
+            this.email = email
+            this.ngaySinh = ngaySinh
+            this.module = module
+        }
+    }
 
-    function displayStudent(arr) {
+    let table
+    let student1 = new Student('HV-0001', 'Nguyễn Văn A', 'C0723G1', 'nguyen.a@gmail.com', '05/09/1999', '1')
+    let student2 = new Student('HV-0002', 'Nguyễn Văn B', 'C0723G1', 'nguyen.b@gmail.com', '05/09/2000', '1')
+    let student3 = new Student('HV-0003', 'Nguyễn Văn C', 'C0723G1', 'nguyen.c@gmail.com', '05/09/2001', '1')
+    let arrStudent = [student1, student2, student3]
+
+    function display(arr) {
         table = `<table border="1" style="border-collapse: collapse">
-  <tr>
-    <th>Mã học viên</th>
-    <th>Tên</th>
-    <th>Lớp</th>
-    <th>Email</th>
-    <th>Ngày sinh</th>
-    <th>Module</th>
-  </tr>`
+    <tr>
+        <th>Mã học viên</th>
+        <th>Tên</th>
+        <th>Lớp</th>
+        <th>Email</th>
+        <th>Ngày Sinh</th>
+        <th>Module</th>
+    </tr>`
         for (let row = 0; row < arr.length; row++) {
-            table += `<tr>`
-            for (let col = 0; col < arr[row].length; col++) {
-                table += ` <td>` + arr[row][col] + `</td>`
-            }
-            table += `</tr>`
+            table += `<tr>
+                <td>` + arr[row].maHocVien + `</td>
+                <td>` + arr[row].ten + `</td>
+                <td>` + arr[row].lop + `</td>
+                <td>` + arr[row].email + `</td>
+                <td>` + arr[row].ngaySinh + `</td>
+                <td>` + arr[row].module + `</td>
+                 </tr>`
         }
         table += `</table>`
         document.getElementById('display').innerHTML = table
+        console.log(table)
     }
 
+    display(arrStudent)
+
     function addStudent(arr) {
-        let newStudent = []
-        newStudent[0] = prompt('Nhập mã học viên cần thêm')
-        newStudent[1] = prompt('Nhập tên học viên cần thêm')
-        newStudent[2] = prompt('Nhập lớp của học viên cần thêm')
-        newStudent[3] = prompt('Nhập email cần thêm')
-        newStudent[4] = prompt('Nhập ngày sinh của học viên cần thêm')
-        newStudent[5] = prompt('Nhập module của học viên cần thêm')
-        const confirmAdd = confirm('Bạn có muốn thêm học viên ' + newStudent[1] + ' ?')
+        let newStudent = new Student()
+        this.maHocVien = prompt("Hãy nhập vào mã số sinh viên cần thêm")
+        this.ten = prompt("Hãy nhập vào tên sinh viên cần thêm")
+        this.lop = prompt("Hãy nhập vào lớp sinh viên cần thêm")
+        this.email = prompt("Hãy nhập vào email sinh viên cần thêm")
+        this.ngaySinh = prompt("Hãy nhập vào ngày sinh của sinh viên cần thêm")
+        this.module = prompt("Hãy nhập vào lớp của sinh viên cần thêm")
+        const confirmAdd = confirm('bạn có muốn thêm sinh viên ' + newStudent[1] + ' ?')
         if (confirmAdd === true) {
             arr.push(newStudent)
-            displayStudent(arr)
+            display(arr)
         }
     }
 
     function editStudent(arr) {
-        let editId = prompt('Nhap chinh xac ID ban muon xoa')
+        let editId = prompt('Hãy nhập vào ID của sinh viên cần thêm')
+        let check = 0;
+        let index
         for (let row = 0; row < arr.length; row++) {
-            if (arr[row][0] === editId) {
-                arr[row][1] = prompt('Hãy thay đổi tên học viên')
-                arr[row][2] = prompt('Hãy thay đổi lớp')
-                arr[row][3] = prompt('Hãy thay đổi mail')
-                arr[row][4] = prompt('Hãy thay đổi ngày sinh')
-                arr[row][5] = prompt('Hãy thay đổi module')
-                displayStudent(arr)
-                return;
+            if (arr[row].maHocVien === editId) {
+                check = 1
+                index = row
+                break;
             }
         }
-        alert('Ma hoc vien khong ton tai')
+        if (check === 1) {
+            arr[index].ten = prompt('Hãy nhập lại tên sinh viên')
+            arr[index].lop = prompt('Hãy nhập lại lớp của sinh viên')
+            arr[index].email = prompt('Hãy nhập lại email của sinh viên')
+            arr[index].ngaySinh = prompt('Hãy nhập lại ngày sinh của sinh viên')
+            arr[index].module = prompt('Hãy nhập lại module của sinh viên')
+            display(arr)
+        } else {
+            alert("Mã sinh viên không tồn tại")
+        }
     }
 
     function delStudent(arr) {
-        let delId = prompt('Nhap chinh xac ID ban muon xoa')
+        let delId = prompt('Nhập vào ID của học viên cần xoá')
+        let index
+        let check = 0
         for (let row = 0; row < arr.length; row++) {
             if (arr[row][0] === delId) {
-                const confirmDel = confirm('Ban cho chac muon xoa ' + arr[row][1])
-                if (confirmDel === true) {
-                    check = 1;
-                    arr.splice(row, 1)
-                    displayStudent(arr)
-                    return;
-                }
+                check = 1;
+                index = row
+                break;
             }
         }
-        alert('Ma sinh vien ban nhap khong co')
+        if (check === 1) {
+            const confirmDel = confirm('Bạn có chắc muốn xoá sinh viên ' + arr[index][1])
+            if (confirmDel === true) {
+                arr.splice(index, 1)
+                display(arr)
+            }
+        } else {
+            alert('Mã học viên bạn nhập không đúng')
+        }
     }
-
-    displayStudent(myArr)
 </script>
 </body>
 </html>

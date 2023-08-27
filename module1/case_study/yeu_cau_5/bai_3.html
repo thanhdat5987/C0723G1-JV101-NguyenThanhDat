@@ -6,13 +6,18 @@
 </head>
 <body>
 <script>
-    let row = +prompt('nhập vào số lượng hàng của mảng')
-    let col = +prompt('nhập vào số lượng cột của mảng')
-    if (row > 0 && col > 0 && isNaN(row) === false && isNaN(col) === false && col % 1 === 0 && row % 1 === 0) {
+    let row
+    let col
+    do {
+        row = +prompt('nhập vào số lượng hàng của mảng')
+        col = +prompt('nhập vào số lượng cột của mảng')
+        if (row > 0 && col > 0 && isNaN(row) === false && isNaN(col) === false && col % 1 === 0 && row % 1 === 0) {
+            break;
+        } else {
+            alert('Số lượng hàng và cột phải là sô Nguyên và lớn hơn 0')
+        }
+    } while (true)
 
-    } else {
-        alert('Số lượng hàng và cột phải là sô Nguyên và lớn hơn 0')
-    }
     // cho nhập vào mảng 2 chiều
     let myArr2d = new Array(row)
     for (let row = 0; row < myArr2d.length; row++) {
