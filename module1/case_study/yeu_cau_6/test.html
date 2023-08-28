@@ -5,115 +5,58 @@
     <title>Title</title>
 </head>
 <body>
-<button onclick="addStudent(arrStudent)">Thêm học viên</button>
-<button onclick="delStudent(arrStudent)">Xoá học viên</button>
-<button onclick="editStudent(arrStudent)">Sửa thông tin học viên</button>
+<h1>Chương trình quản lý học viên</h1>
+<button>Thêm học viên</button>
+<button>Sửa học viên</button>
+<button>Xoá học viên</button>
+<br>
 <br>
 <div id="display"></div>
 <script>
     class Student {
-        constructor(maHocVien, ten, lop, email, ngaySinh, module) {
-            this.maHocVien = maHocVien
-            this.ten = ten
-            this.lop = lop
+        constructor(studentId, studentName, className, email, birthDay, module) {
+            this.studentId = studentId
+            this.studentName = studentName
+            this.className = className
             this.email = email
-            this.ngaySinh = ngaySinh
+            this.birthDay = birthDay
             this.module = module
         }
     }
 
+    let student1 = new Student('HV-001', 'Nguyễn Văn A', 'C0723G1', 'nguyen.van.a@mgail.com', '05/09/1999', '1')
+    let student2 = new Student('HV-002', 'Nguyễn Văn B', 'C0723G1', 'nguyen.van.b@mgail.com', '05/09/1998', '1')
+    let student3 = new Student('HV-001', 'Nguyễn Văn A', 'C0723G1', 'nguyen.van.c@mgail.com', '05/09/1997', '1')
+    let myStudent = [student1, student2, student3]
     let table
-    let student1 = new Student('HV-0001', 'Nguyễn Văn A', 'C0723G1', 'nguyen.a@gmail.com', '05/09/1999', '1')
-    let student2 = new Student('HV-0002', 'Nguyễn Văn B', 'C0723G1', 'nguyen.b@gmail.com', '05/09/2000', '1')
-    let student3 = new Student('HV-0003', 'Nguyễn Văn C', 'C0723G1', 'nguyen.c@gmail.com', '05/09/2001', '1')
-    let arrStudent = [student1, student2, student3]
 
     function display(arr) {
         table = `<table border="1" style="border-collapse: collapse">
-    <tr>
-        <th>Mã học viên</th>
-        <th>Tên</th>
-        <th>Lớp</th>
-        <th>Email</th>
-        <th>Ngày Sinh</th>
-        <th>Module</th>
-    </tr>`
+            <tr>
+            <th>Mã học viên</th>
+            <th>Tên</th>
+            <th>Lớp</th>
+            <th>Email</th>
+            <th>Ngày sinh</th>
+            <th>Module</th>
+           </tr>`
         for (let row = 0; row < arr.length; row++) {
             table += `<tr>
-                <td>` + arr[row].maHocVien + `</td>
-                <td>` + arr[row].ten + `</td>
-                <td>` + arr[row].lop + `</td>
-                <td>` + arr[row].email + `</td>
-                <td>` + arr[row].ngaySinh + `</td>
-                <td>` + arr[row].module + `</td>
-                 </tr>`
+            <td>` + arr[row].studentId + `</td>
+            <td>` + arr[row].studentName + `</td>
+            <td>` + arr[row].className + `</td>
+            <td>` + arr[row].email + `</td>
+            <td>` + arr[row].birthDay + `</td>
+            <td>` + arr[row].module + `</td>
+            </tr>`
         }
         table += `</table>`
         document.getElementById('display').innerHTML = table
-        console.log(table)
     }
 
-    display(arrStudent)
+    display(myStudent)
 
-    function addStudent(arr) {
-        let newStudent = new Student()
-        this.maHocVien = prompt("Hãy nhập vào mã số sinh viên cần thêm")
-        this.ten = prompt("Hãy nhập vào tên sinh viên cần thêm")
-        this.lop = prompt("Hãy nhập vào lớp sinh viên cần thêm")
-        this.email = prompt("Hãy nhập vào email sinh viên cần thêm")
-        this.ngaySinh = prompt("Hãy nhập vào ngày sinh của sinh viên cần thêm")
-        this.module = prompt("Hãy nhập vào lớp của sinh viên cần thêm")
-        const confirmAdd = confirm('bạn có muốn thêm sinh viên ' + newStudent[1] + ' ?')
-        if (confirmAdd === true) {
-            arr.push(newStudent)
-            display(arr)
-        }
-    }
 
-    function editStudent(arr) {
-        let editId = prompt('Hãy nhập vào ID của sinh viên cần thêm')
-        let check = 0;
-        let index
-        for (let row = 0; row < arr.length; row++) {
-            if (arr[row].maHocVien === editId) {
-                check = 1
-                index = row
-                break;
-            }
-        }
-        if (check === 1) {
-            arr[index].ten = prompt('Hãy nhập lại tên sinh viên')
-            arr[index].lop = prompt('Hãy nhập lại lớp của sinh viên')
-            arr[index].email = prompt('Hãy nhập lại email của sinh viên')
-            arr[index].ngaySinh = prompt('Hãy nhập lại ngày sinh của sinh viên')
-            arr[index].module = prompt('Hãy nhập lại module của sinh viên')
-            display(arr)
-        } else {
-            alert("Mã sinh viên không tồn tại")
-        }
-    }
-
-    function delStudent(arr) {
-        let delId = prompt('Nhập vào ID của học viên cần xoá')
-        let index
-        let check = 0
-        for (let row = 0; row < arr.length; row++) {
-            if (arr[row][0] === delId) {
-                check = 1;
-                index = row
-                break;
-            }
-        }
-        if (check === 1) {
-            const confirmDel = confirm('Bạn có chắc muốn xoá sinh viên ' + arr[index][1])
-            if (confirmDel === true) {
-                arr.splice(index, 1)
-                display(arr)
-            }
-        } else {
-            alert('Mã học viên bạn nhập không đúng')
-        }
-    }
 </script>
 </body>
 </html>
